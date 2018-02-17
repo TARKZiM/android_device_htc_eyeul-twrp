@@ -20,19 +20,6 @@
 # definition file).
 #
 
-# Model Ids
-# 0P6B10000 - International
-# 0P6B12000 - AT&T/Dev Edition
-# 0P6B13000 - T-Mobile
-# 0P6B16000 - Telus/Rogers (Canada)
-# 0P6B20000 - Verizon
-# 0P6B70000 - Sprint
-
-# Model Ids (Dual SIM variants)
-# 0P6B41000 - Chinese (China Telecom) LTE/EV-DO/CDMA + GSM version
-# 0P6B61000 - Chinese (China Unicom) LTE/WCDMA/GSM + GSM version
-# 0P6B64000 / 0P6B68000 - International LTE/WCDMA/GSM + GSM version
-
 BOARD_VENDOR := htc
 
 # Bootloader
@@ -54,11 +41,12 @@ TARGET_USE_KRAIT_BIONIC_OPTIMIZATION := true
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 ehci-hcd.park=3 zcache androidboot.selinux=permissive
+BOARD_KERNEL_IMAGE_NAME := zImage
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
-BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x02008000 --dt device/htc/m8/dt.img --tags_offset 0x01e00000
-BOARD_CUSTOM_BOOTIMG_MK := device/htc/m8/mkbootimg.mk
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x02008000 --dt device/htc/eyeul/dt.img --tags_offset 0x01e00000
+BOARD_CUSTOM_BOOTIMG_MK := device/htc/eyeul/mkbootimg.mk
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
@@ -75,9 +63,10 @@ BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_RECOVERY_SWIPE := true
 BOARD_USES_MMCUTILS := true
-COMMON_GLOBAL_CPPFLAGS += -DBOARD_RECOVERY_BLDRMSG_OFFSET=2048
-TARGET_PREBUILT_KERNEL := device/htc/m8/kernel
+#COMMON_GLOBAL_CPPFLAGS += -DBOARD_RECOVERY_BLDRMSG_OFFSET=2048
+TARGET_PREBUILT_KERNEL := device/htc/eyeul/kernel
 TARGET_RECOVERY_DEVICE_MODULES := chargeled
+RECOVERY_VARIANT := twrp
 
 # TWRP Build Flags
 TW_THEME := portrait_hdpi
@@ -85,10 +74,6 @@ TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_INCLUDE_DUMLOCK := true
 TW_INCLUDE_CRYPTO := true
 TW_CRYPTO_USE_SYSTEM_VOLD := true
-TW_NO_EXFAT_FUSE := true
+# TW_NO_EXFAT_FUSE := true
 TW_NO_SCREEN_BLANK := true
-
-# Vendor Init
-TARGET_UNIFIED_DEVICE := true
-TARGET_INIT_VENDOR_LIB := libinit_m8
 

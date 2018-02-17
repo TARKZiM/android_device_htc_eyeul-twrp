@@ -14,11 +14,11 @@
 # limitations under the License.
 #
 
-ifeq ($(TARGET_DEVICE),m8)
+ifeq ($(RECOVERY_VARIANT), twrp)
+ifeq ($(TARGET_DEVICE), eyeul)
 
 LOCAL_PATH := $(call my-dir)
+include $(call all-makefiles-under, $(LOCAL_PATH))
 
-include $(call all-subdir-makefiles,$(LOCAL_PATH))
-
-include $(CLEAR_VARS)
+endif
 endif
